@@ -41,4 +41,9 @@ public class ProdutoControlador {
         }
         return new ResponseEntity<>("Produto não encontrado", HttpStatus.NOT_FOUND);
     }
+
+    @DeleteMapping(path = "{id}")
+    public void deletarProduto(@PathVariable("id") Long id){
+        produtoRepositorio.deleteById(id);
+    }
 }
