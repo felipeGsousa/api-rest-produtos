@@ -37,7 +37,7 @@ public class ProdutoControlador {
             produto.setPreco(novoProduto.getPreco());
             produto.setQuantidade(novoProduto.getQuantidade());
             produtoRepositorio.save(produto);
-            return new ResponseEntity<>(produto, HttpStatus.OK)
+            return new ResponseEntity<>(produto, HttpStatus.OK);
         }
         return new ResponseEntity<>("Produto não encontrado", HttpStatus.NOT_FOUND);
     }
