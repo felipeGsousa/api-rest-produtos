@@ -5,14 +5,8 @@ import com.example.apirestprodutos.repositorio.ProdutoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-<<<<<<< HEAD
-import org.springframework.transaction.annotation.Transactional;
-=======
->>>>>>> a94181538ed009ec8555d8f35b4dff6aa9b4f2cf
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.Optional;
 
 @RestController
@@ -34,7 +28,6 @@ public class ProdutoControlador {
         return new ResponseEntity<>("Produto não encontrado", HttpStatus.NOT_FOUND);
     }
 
-    @Transactional
     @PutMapping(path = "{id}")
     public ResponseEntity<?> atualizarProduto(@PathVariable("id") Long id, @RequestBody Produto novoProduto){
         Optional<Produto> produtoOptional = produtoRepositorio.findById(id);
