@@ -7,8 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.Optional;
 
 @RestController
@@ -30,4 +28,17 @@ public class ProdutoControlador {
         return new ResponseEntity<>("Produto não encontrado", HttpStatus.NOT_FOUND);
     }
 
+    @PutMapping(path = "{id}")
+    public ResponseEntity<?> atualizarProduto(@PathVariable("id") Long id, @RequestBody Produto novoProduto){
+        Optional<Produto> produtoOptional = produtoRepositorio.findById(id);
+        if (produtoOptional.isPresent()){
+            Produto produto = produtoOptional.get();
+            produto.setNome(novoProduto.getNome());
+            produto.setPreco(novoProduto.getPreco());
+            produto.setQuantidade(novoProduto.getQuantidade());
+            produtoRepositorio.save(produto);
+            return new ResponseEntity<>(produto, HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Produto não encontrado", HttpStatus.NOT_FOUND);
+    }
 }
